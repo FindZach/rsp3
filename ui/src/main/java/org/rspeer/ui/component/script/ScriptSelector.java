@@ -28,16 +28,12 @@ import java.util.concurrent.ExecutionException;
 
 public class ScriptSelector extends Window<JDialog> {
 
-    private final BotPreferences preferences;
-    private final BotFrame botFrame;
     private final Viewport viewport;
     private final ScriptProvider loader;
 
-    public ScriptSelector(BotPreferences preferences, BotFrame botFrame, ScriptController controller) {
+    public ScriptSelector(BotPreferences preferences, BotFrame botFrame, ScriptController controller,
+                          ScriptLoaderProvider provider) {
         super(new JDialog(botFrame.getFrame(), Message.SCRIPT_SELECTOR.getActive(preferences), true));
-        this.botFrame = botFrame;
-        this.preferences = preferences;
-        ScriptLoaderProvider provider = new ScriptLoaderProvider();
         this.viewport = initializeViewport(controller);
         this.loader = provider.get();
 

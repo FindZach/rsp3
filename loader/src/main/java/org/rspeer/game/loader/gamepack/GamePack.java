@@ -1,5 +1,6 @@
 package org.rspeer.game.loader.gamepack;
 
+import com.google.inject.Inject;
 import org.rspeer.commons.CachedClassLoader;
 import org.rspeer.commons.Configuration;
 import org.rspeer.game.loader.config.GameConfig;
@@ -24,6 +25,7 @@ public class GamePack {
 
     private final GameConfig config;
 
+    @Inject
     public GamePack(GameConfig config) {
         this.config = config;
     }

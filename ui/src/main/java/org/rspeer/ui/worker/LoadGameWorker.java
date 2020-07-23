@@ -26,14 +26,18 @@ import java.util.function.Consumer;
 
 public class LoadGameWorker extends BotWorker<RSClient, String> {
 
+    private final GameLoader gameLoader;
+
     @Inject
-    public LoadGameWorker(BotFrame window, BotPreferences preferences, @Named("BotDispatcher") EventDispatcher eventDispatcher) {
+    public LoadGameWorker(BotFrame window, BotPreferences preferences,
+                          @Named("BotDispatcher") EventDispatcher eventDispatcher, GameLoader gameLoader) {
         super(window, preferences, eventDispatcher);
+        this.gameLoader = gameLoader;
     }
 
     @Override
     protected RSClient work() throws IOException {
-        return GameLoader.load(true, new Callback());
+        return gameLoader.load(true, new Callback());
     }
 
     @Override

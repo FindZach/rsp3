@@ -33,7 +33,6 @@ public class InterfaceExplorer extends JFrame {
     private Object render = null;
     private Supplier<TreeModel> provider = new DefaultModelProvider();
 
-    @Inject
     public InterfaceExplorer(BotPreferences preferences, BotFrame frame) {
         super(Message.INTERFACE_EXPLORER.getActive(preferences));
 

@@ -13,6 +13,18 @@ public class Configuration {
         return APPLICATION_NAME.substring(0, 3).toUpperCase() + APPLICATION_NAME.substring(3);
     }
 
+    private static final String API_BASE_ENV = "api";
+    private static final String DEFAULT_API_BASE = "https://www.rspeer.org/api/v3/";
+
+    public static String getApiBase() {
+        String base = System.getenv(API_BASE_ENV);
+        if (base == null || base.isEmpty()) {
+            base = DEFAULT_API_BASE;
+        }
+
+        return base;
+    }
+
     public static class Paths {
 
         public static final Path HOME = java.nio.file.Paths.get(System.getProperty("user.home"), APPLICATION_NAME);

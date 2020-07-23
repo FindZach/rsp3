@@ -1,5 +1,6 @@
 package org.rspeer.game.loader.applet;
 
+import com.google.inject.Inject;
 import org.rspeer.game.loader.config.GameConfig;
 
 import java.applet.Applet;
@@ -11,6 +12,7 @@ public class GameApplet {
 
     private final GameConfig config;
 
+    @Inject
     public GameApplet(GameConfig config) {
         this.config = config;
     }

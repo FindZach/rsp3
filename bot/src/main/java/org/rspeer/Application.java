@@ -3,6 +3,7 @@ package org.rspeer;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import org.rspeer.di.ApplicationModule;
 import org.rspeer.ui.BotFrame;
 import org.rspeer.ui.worker.LoadGameWorker;
 

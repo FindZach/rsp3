@@ -8,6 +8,7 @@ import org.rspeer.event.Subscribe;
 import org.rspeer.game.script.Script;
 import org.rspeer.game.script.ScriptController;
 import org.rspeer.game.script.event.ScriptChangeEvent;
+import org.rspeer.game.script.loader.ScriptLoaderProvider;
 import org.rspeer.game.script.loader.ScriptSource;
 import org.rspeer.ui.BotFrame;
 import org.rspeer.ui.component.script.ScriptSelector;
@@ -21,7 +22,7 @@ public class BotToolBar extends JToolBar {
 
     @Inject
     public BotToolBar(@Named("BotDispatcher") EventDispatcher dispatcher, BotFrame frame,
-                      BotPreferences preferences, ScriptController controller) {
+                      BotPreferences preferences, ScriptController controller, ScriptLoaderProvider provider) {
         dispatcher.subscribe(this);
 
         setFloatable(false);
@@ -36,7 +37,7 @@ public class BotToolBar extends JToolBar {
 
         start.addActionListener(e -> {
             if (start.getText().equals("Start")) {
-                ScriptSelector selector = new ScriptSelector(preferences, frame, controller);
+                ScriptSelector selector = new ScriptSelector(preferences, frame, controller, provider);
                 selector.display();
             } else {
                 controller.stop();

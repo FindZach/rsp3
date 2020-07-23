@@ -13,6 +13,7 @@ import org.rspeer.game.script.loader.ScriptSource;
 public class ScriptController {
 
     private final EventDispatcher environmentDispatcher;
+    private final ScriptLoaderProvider provider;
 
     private Script active;
     private ScriptSource source;
@@ -20,8 +21,9 @@ public class ScriptController {
     private boolean reload;
 
     @Inject
-    public ScriptController(@Named("BotDispatcher") EventDispatcher environmentDispatcher) {
+    public ScriptController(@Named("BotDispatcher") EventDispatcher environmentDispatcher, ScriptLoaderProvider provider) {
         this.environmentDispatcher = environmentDispatcher;
+        this.provider = provider;
         environmentDispatcher.subscribe(this);
     }
 
@@ -67,7 +69,7 @@ public class ScriptController {
             if (reload) {
                 reload = false;
 
-                ScriptProvider loader = new ScriptLoaderProvider().get();
+                ScriptProvider loader = provider.get();
                 ScriptBundle bundle = loader.load();
                 ScriptSource reloaded = bundle.findShallow(source);
 

@@ -10,6 +10,8 @@ import java.nio.file.Path;
 import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+
+import com.google.inject.Inject;
 import org.rspeer.event.EventDispatcher;
 import org.rspeer.game.script.Script;
 import org.rspeer.game.script.loader.ScriptBundle;
@@ -20,6 +22,7 @@ public class LocalScriptLoader implements ScriptProvider {
 
     private final Path root;
 
+    @Inject
     public LocalScriptLoader(Path root) {
         this.root = root;
     }

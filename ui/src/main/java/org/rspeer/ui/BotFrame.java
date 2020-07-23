@@ -10,6 +10,7 @@ import org.rspeer.environment.preferences.type.SceneRenderPreference;
 import org.rspeer.event.EventDispatcher;
 import org.rspeer.event.Subscribe;
 import org.rspeer.game.script.ScriptController;
+import org.rspeer.game.script.loader.ScriptLoaderProvider;
 import org.rspeer.ui.component.menu.BotMenuBar;
 import org.rspeer.ui.component.menu.BotToolBar;
 import org.rspeer.ui.component.splash.Splash;
@@ -32,13 +33,14 @@ public class BotFrame extends Window<JFrame> {
 
     @Inject
     public BotFrame(BotPreferences preferences, @Named("BotDispatcher") EventDispatcher eventDispatcher,
-                    ScriptController controller) {
+                    ScriptController controller, ScriptLoaderProvider provider) {
         super(new JFrame(Configuration.getApplicationTitle()));
         this.preferences = preferences;
         this.eventDispatcher = eventDispatcher;
         this.menu = new BotMenuBar(preferences, this);
         applyDefaults();
-        applyComponents(new BotToolBar(eventDispatcher, this, preferences, controller));
+        BotToolBar toolBar = new BotToolBar(eventDispatcher, this, preferences, controller, provider);
+        applyComponents(toolBar);
         applyListeners();
     }
 
